@@ -1,0 +1,123 @@
+/* This is the universal selctor  */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* this is the body of my page */
+body {
+    /* width: 100vw; */
+    height: 100vh;
+    background-color: #f0f2f5;
+}
+
+/* this the main container all items in this container */
+.container {
+    height: 100%;
+    /* margin: 200px 0 ; */
+    justify-content: space-around;
+    flex-direction: row;
+    align-items: center;
+    /* justify-content: center; */
+}
+
+.fb-col {
+    
+    width: 50%;
+    
+}
+
+/* ye coloumn facebook ki img wala first box banaya hai !Start f */
+#logo img {
+    width: 250px;
+    height: 125px;
+    /* padding-top: 52px 0px 0px 0px; */
+}
+
+
+.heading h2{ 
+font-size: 25px;
+}
+
+
+.data-entry-col {
+    box-shadow: 3px 3px 10px #e2e2e2, -2px -0px 10px #e2e2e2;
+    border-radius: 10px;
+    padding: 30px 10px 40px 10px;
+    background-color: #ffffff;
+}
+
+
+.forget-pass{
+    text-align: center;
+    margin-top: 5px;
+}
+
+#account {
+    text-align: center;
+}
+
+.para {
+    padding: 30px 0px  ;
+}
+
+
+
+
+
+
+
+/* data entry column hai ye  !end */
+
+
+.d-o-b {
+    font-size: 12px;
+    }
+
+.firstnameAndlastname {
+    display: grid ;
+    grid-template-columns: 1fr 1fr;
+    gap:10px
+}
+.modal-header {
+    padding: 0px 20px;
+}
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}
+.modal-body p {
+    margin-bottom: 0;
+    margin-top: 10px;
+}
+.btn-secondary {
+    color: black;
+background-color: white;
+}
+.btn-secondary:hover {
+    color: black;
+background-color: white;
+}
+.btn-secondary:focus{
+background-color: white;
+color: black;
+
+}
+.dropdown-toggle::after {
+    margin-left: 5em;
+}
+.gender {
+    font-size: 12px;
+}
+/* .decideYouGender {
+    padding: 0px 10px;
+    gap: 10px;
+} */
+.btn-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    /* padding: 0px 20px;   */
+}
