@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
-import { getFirestore,addDoc,doc,setDoc, getDocs,getDoc,collection } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
+import { getFirestore, addDoc,doc,setDoc, getDocs ,getDoc , collection } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCWytg80JBULz8HiNUs0KRadCmVyA2KgC8",
@@ -22,13 +22,13 @@ const Username = document.querySelector('.User_name')
 // console,console.log(Username);
 const postBtn = document.querySelector('.postBtn')
 // console.log(postBtn);
-const inputtext = document.querySelector('#input-text')
+const inputText = document.querySelector('#input-text')
 // console.log(inputtext);
 const postArea = document.querySelector('#postArea')
 // console.log(postArea);
 
 
-let loggodinuser;
+let loggedInUser;
 
 
 onAuthStateChanged(auth,async (user) => {
@@ -36,7 +36,7 @@ onAuthStateChanged(auth,async (user) => {
       
         // console.log(user)
       const uid = user.uid;
-      loggodinuser = uid
+      loggedInUser = uid
       // console.log(loggodinuser);
     const docRef = doc(db, "users", uid);
     const docSnap = await getDoc(docRef);
@@ -79,33 +79,32 @@ function logouthandler () {
 postBtn.addEventListener('click', posthandler)
 
 function posthandler() {
-  storepost(),
-  createpost()
+  storePost()
+  createPost()
 }
 
 
-
-
-
-
-
- async function storepost(){
-  const docRef = await addDoc(collection(db, "posts"), {
-   postcontent: inputtext.Value,
-   author: loggodinuser
-  });
-  // console.log("Document written with ID: ", docRef.id);
+ async function storePost(){
+  try {
+    const docRef = await addDoc(collection(db, "posts"), {
+     postContent: inputText.value,
+     author: loggedInUser
+    });
+    console.log("Document written with ID: ", docRef.id);
+  } catch (error) {
+    console.log(error);
+  }
   
 }
 
 
-async function createpost() {
+async function createPost() {
 
   postArea.innerHTML = ''
 
   const querySnapshot = await getDocs(db, 'posts');
   querySnapshot.forEach((doc) => {
-    const {postcontent, author} = doc.data() 
+    const {postContent, author} = doc.data() 
        // doc.data() is never undefined for query doc snapshots
     // console.log(doc.id, " => ", doc.data());
 
@@ -119,7 +118,7 @@ async function createpost() {
                 <img src="https://scontent.fkhi4-3.fna.fbcdn.net/v/t39.30808-6/344859260_9764027536941505_5188833060278820647_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeH7vxBxRC8BIXXDfKxmKp_QIQqlHeM23VkhCqUd4zbdWUQP10T73idj9leNJ4HhuNE3NEJ2L2biQphwS3SpwqfO&_nc_ohc=Ev9NJMTiCH8AX9tS5LP&_nc_oc=AQm3HNrP-TdlBksGX79ATJtssRpdwujV4v09mFkqiz8fflH_efOIfbCadtWmLeq6I70&_nc_zt=23&_nc_ht=scontent.fkhi4-3.fna&oh=00_AfBVdO1b8Yk6YnFz6w6L08gRX270M3_UhUPeWLMuTQEWvg&oe=648F185F"
                     alt="" width="35px" class="rounded-circle">
                 <span class="user-name ps-2 "> <a href="../profile/profile.html"
-                        class="text-dark User_name">Muhammad Hasan Ashraf</a> </span> <br>
+                        class="text-dark User_name">Muhammad Ashhad khan</a> </span> <br>
             </h6>
             <span class="time ps-5 fs-6 mb-0"><a href="" class="text-dark">5h</a> <i
                     class="fa-solid fa-globe"></i></span>
@@ -150,7 +149,7 @@ async function createpost() {
 
 </div>`
 postArea.prepend(div)
-inputtext.Value = ''
+inputText.Value = ''
   });
 }
 
